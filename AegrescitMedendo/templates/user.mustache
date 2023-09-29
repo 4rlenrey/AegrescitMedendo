@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title> {{username}} - Profile </title>
+    <link rel="icon" type="image/x-icon" href="/static/logo.png">
+    <script src="/static/scripts.js"></script>
+    <link rel="stylesheet" href="/common.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+</head>
+<!DOCTYPE html>
+<html>
+
+<body>
+    <div class="main_sd">
+        <div class="horizontally stretch">
+            <div class="vertically ">
+                <div class="vertically widget centeredY product_list_parent">
+                    <div class="centeredX vertically ">
+                        {{#products}}
+                        <div class="object vertically" onclick="redirectToProduct('{{id}}')">
+                            <h2>{{title}}</h2>
+                            <div class="details">
+                                <div class="horizontally">
+                                    <div class="horizontally">
+                                        <h3>Seller:</h3>
+                                        <h4>{{seller_name}} {{seller_surname}}</h4>
+                                    </div>
+                                    <div class="horizontally">
+                                        <h3>Category:</h3>
+                                        <h4>{{category}}</h4>
+                                    </div>
+                                </div>
+
+                                <div class="horizontally">
+                                    <div class="vertically">
+                                        <h3>Amount:</h3> {{amount}}
+                                    </div>
+                                    <div class="vertically">
+                                        <h3>Price:</h3> {{price}}
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="description centeredX">{{description}}</div>
+                        </div>
+                        {{/products}}
+                    </div>
+                </div>
+            </div>
+            <div class="vertically">
+                <div class="vertically widget">
+                    <h1>Sell product</h1>
+                    <form class="centeredX vertically box" id="product-form">
+                        <label for="title">Title</label>
+                        <input type="text" id="title" name="title" required>
+
+                        <div class="horizontally">
+                            <div class="vertically">
+                                <label for="amount">Amount</label>
+                                <input type="number" min="1" id="amount" name="amount" required>
+                            </div>
+
+                            <div class="vertically">
+                                <label for="price">Price</label>
+                                <input type="number" min="0" id="price" name="price" required>
+                            </div>
+                        </div>
+
+                        <label for="category">Category</label>
+                        <select id="category" name="category" required>
+                            <option value="">--Please choose an option--</option>
+                            {{#categories}}
+                            <option value="{{id}}">{{name}}</option>
+                            {{/categories}}
+                        </select>
+
+                        <label for="description">Description</label>
+                        <textarea id="description" name="description" rows="5" required></textarea>
+                        <button type="button" onclick="submit_product()">Submit</button>
+                    </form>
+                </div>
+                
+            </div>
+
+        </div>
+        <div class="vertically ">
+            <ul class="menu_side">
+                <li><a href="/index">Home</a></li>
+                <li><a href="/profile/{{id}}">Profile</a></li>
+                <li><a href="/about">About&nbsp;us</a></li>
+            </ul>
+
+            <div class="user-widget">
+                <h3>User Information</h3>
+                <p>Username: {{username}}</p>
+                <p>Balance: {{balance}}$</p>
+                <p>Name: {{name}}</p>
+                <p>Surname: {{surname}}</p>
+                <p>Email: {{email}}</p>
+                <p>Phone: {{phone}}</p>
+                <button onclick="goToProfile()">Go to Profile</button>
+                <button onclick="logout()">Logout</button>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        function goToProfile() {
+            window.location.href = "/profile/{{id}}";
+        }
+
+        function logout() {
+            deleteCookie('access_token');
+            deleteCookie('username');
+            localStorage.clear();
+            window.location.href = "/login";
+        }
+
+        function redirectToProduct(id) {
+            window.location.href = '/product/' + id;
+        }
+    </script>
+</body>
+
+</html>

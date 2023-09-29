@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>AegrescitMedendo</title>
+    <link rel="icon" type="image/x-icon" href="/static/logo.png">
+    <script src="/static/scripts.js"></script>
+    <link rel="stylesheet" href="/common.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+</head>
+
+<body>
+    <div class="main_sd">
+        <div class="main centeredX">
+            <div class="product-container">
+                <form class="centeredX vertically box" id="product-form">
+                    <label for="title">Title</label>
+                    <input type="text" id="title" name="title" value="{{title}}" required>
+
+                    <div class="horizontally">
+                        <div class="vertically">
+                            <label for="amount">Amount</label>
+                            <input type="number" min="1" id="amount" value="{{amount}}" name="amount" required>
+                        </div>
+
+                        <div class="vertically">
+                            <label for="price">Price</label>
+                            <input type="number" min="0" id="price" value="{{price}}" name="price" required>
+                        </div>
+                    </div>
+
+                    <label for="category">Category</label>
+                    <select id="category" name="category" required>
+                        <option value="">--Please choose an option--</option>
+                        {{#categories}}
+                        <option value="{{id}}">{{name}}</option>
+                        {{/categories}}
+                    </select>
+
+                    <label for="description">Description</label>
+                    <textarea id="description" name="description" rows="5" required>{{description}}</textarea>
+                </form>
+                <div class="button-container">
+                    <button type="button" onclick="saveProduct()">Save changes</button>
+                    <button type="button" onclick="deleteProduct()">Delete product</button>
+                </div>
+            </div>
+        </div>
+        <div class="vertically ">
+            <ul class="menu_side">
+                <li><a href="/index">Home</a></li>
+                <li><a href="/profile/{{user_id}}">Profile</a></li>
+                <li><a href="/about">About&nbsp;us</a></li>
+            </ul>
+            <div class="user-widget">
+                <h3>User Information</h3>
+                <p>Username: {{username}}</p>
+                <p>Balance: {{balance}}$</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Get the select element
+        var selectElement = document.getElementById('category');
+        var selectedValue = "{{category_id}}";
+        selectElement.value = selectedValue;
+
+        function saveProduct() {
+            const form = document.getElementById("product-form");
+
+            const formData = new FormData(form);
+            const payload = {
+                title: formData.get("title"),
+                amount: parseInt(formData.get("amount")),
+                price: parseFloat(formData.get("price")),
+                category_id: parseInt(formData.get("category")),
+                seller_id: parseInt("{{user_id}}"),
+                description: formData.get("description"),
+            };
+
+            update_obj(payload, "/api/product/{{product_id}}");
+        };
+
+
+
+        function deleteProduct(){
+            remove_entry(parseInt("{{product_id}}"), '/api/product');
+        }
+
+    </script>
+</body>
+
+
+</html>

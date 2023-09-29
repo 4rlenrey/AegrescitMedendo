@@ -1,0 +1,16 @@
+version: '2'
+
+services:
+    webserver:
+        restart: unless-stopped
+        volumes:
+            - ./:/aegrescit_postgres_data
+        build:
+            context: .
+            dockerfile: ./Dockerfile
+        ports:
+            - 80:80
+        container_name: aegrescit_webserver
+
+volumes:
+    postgres_data:

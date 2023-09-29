@@ -1,0 +1,16 @@
+
+*/uploads/*
+*.db
+*/lib/*
+
+CMakeFiles/
+CmakeCache.txt
+
+*build/*
+
+AegrescitMedendo/AegrescitMedendo
+
+*external/
+
+.vscode/
+build/

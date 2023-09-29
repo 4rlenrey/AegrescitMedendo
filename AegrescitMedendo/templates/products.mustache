@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>AegrescitMedendo</title>
+    <link rel="icon" type="image/x-icon" href="/static/logo.png">
+    <script src="/static/scripts.js"></script>
+    <link rel="stylesheet" href="/common.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+</head>
+
+<body>
+    <ul class="menu sticky">
+        <li><a href="index">Home</a></li>
+        <li><a href="products">Products</a></li>
+        <li><a href="profile">Profile</a></li>
+        <li><a href="about">About us</a></li>
+    </ul>
+
+    <div class="vertically widget centeredX">
+        <h1>Product List</h1>
+        <div class="centeredX vertically list_limited">
+            {{#products}}
+            <div class="object">
+                <div class="object-title">{{title}}</div>
+                <div class="object-details">
+                    <div class="horizontally">
+                        <div class="vertically"><strong>Amount:</strong> {{amount}}</div>
+                        <div class="vertically"><strong>Price:</strong> {{price}}</div>
+                    </div>
+                    <div class="horizontally">
+                        <div class="vertically"><strong>Seller:</strong> {{seller}}</div>
+                        <div class="vertically"><strong>Category:</strong> {{category}}</div>
+                    </div>
+                </div>
+                <div class="object-description">{{description}}</div>
+                <div class="object-actions">
+                    <button data-url="/product/{{id}}">Delete</button>
+                    <button data-url="/product/{{id}}">Update</button>
+                </div>
+            </div>
+            {{/products}}
+        </div>
+    </div>
+
+</body>
+
+</html>

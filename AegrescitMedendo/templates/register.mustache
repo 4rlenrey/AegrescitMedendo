@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>AegrescitMedendo</title>
+    <link rel="icon" type="image/x-icon" href="/static/logo.png">
+    <script src="/static/scripts.js"></script>
+    <link rel="stylesheet" href="/common.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+</head>
+
+<body>
+    <div class="vertically widget centeredX centeredY">
+        <h1>Register</h1>
+        <form class="centeredX vertically box" id="user-form">
+            <div class="horizontally">
+                <div class="vertically">
+                    <label for="user-name">Name</label>
+                    <input type="text" id="user-name" name="user-name" required>
+                </div>
+
+                <div class="vertically">
+                    <label for="user-surname">Surname</label>
+                    <input type="text" id="user-surname" name="user-surname" required>
+                </div>
+            </div>
+
+            <div class="horizontally">
+                <div class="vertically">
+                    <label for="user-email">Email</label>
+                    <input type="email" id="user-email" name="user-email" required>
+                </div>
+                <div class="vertically">
+                    <label for="user-phone">Phone</label>
+                    <input type="tel" id="user-phone" name="user-phone" required>
+                </div>
+            </div>
+            <button type="button" onclick="submitUser()">Submit</button>
+        </form>
+    </div>
+
+</body>
+
+</html>

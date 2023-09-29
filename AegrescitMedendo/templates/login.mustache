@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>AegrescitMedendo</title>
+    <link rel="icon" type="image/x-icon" href="/static/logo.png">
+    <script src="/static/auth_utils.js"></script>
+    <script src="/static/scripts.js"></script>
+    <link rel="stylesheet" href="/common.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+</head>
+
+<body>
+    <div class="login sides">
+        <h1>Login</h1>
+        <form class="horizontally box" id="login-form">
+            <div class="horizontally">
+                <div class="vertically">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+            </div>
+
+            <div class="horizontally">
+                <div class="vertically">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+            </div>
+            <button type="button" onclick="login()">Submit</button>
+        </form>
+    </div>
+
+    <br>
+    <div class="horizontally main_sd">
+        <div class="vertically widget-borderless">
+            <form class="vertically box" id="user-form">
+                <h1>Register</h1>
+                <div class="horizontally">
+                    <div class="vertically">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+
+                    <div class="vertically">
+                        <label for="surname">Surname</label>
+                        <input type="text" id="surname" name="surname" required>
+                    </div>
+                </div>
+
+                <div class="horizontally">
+                    <div class="vertically">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+
+                    <div class="vertically">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" name="username" required>
+                    </div>
+
+                </div>
+
+                <div class="horizontally">
+                    <div class="vertically">
+                        <label for="balance">Balance</label>
+                        <input type="number" min="0" step="0.01" id="balance" name="balance" required>
+                    </div>
+                    <div class="vertically">
+                        <label for="phone">Phone</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                </div>
+
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+                <button type="button" onclick="register()">Submit</button>
+            </form>
+            <div></div>
+        </div>
+        <div>
+        </div>
+    </div>
+</body>
+
+</html>

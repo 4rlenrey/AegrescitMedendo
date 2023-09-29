@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>{{title}}</title>
+    <link rel="icon" type="image/x-icon" href="/static/logo.png">
+    <script src="/static/scripts.js"></script>
+    <link rel="stylesheet" href="/common.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+    <style>
+        .star-rating {
+            unicode-bidi: bidi-override;
+            direction: rtl;
+            text-align: center;
+        }
+
+        .star-rating input {
+            display: none;
+        }
+
+        .star-rating label {
+            display: inline-block;
+            font-size: 30px;
+            color: #ddd;
+            cursor: pointer;
+        }
+
+        .star-rating label:before {
+            content: '\2605';
+        }
+
+        .star-rating input:checked~label {
+            color: #ffcc00;
+        }
+
+        .review-form {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .review-form textarea {
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="main_sd">
+        <div class="main centeredX ">
+            <div class="horizontally">
+                <div class="product-container ">
+                    <div class="object vertically" onclick="redirectToProduct('{{id}}')">
+                        <h2>{{title}}</h2>
+                        <div class="details">
+                            <div class="horizontally">
+                                <div class="vertically">
+                                    <h3>Amount:</h3> {{amount}}
+                                </div>
+                                <div class="vertically">
+                                    <h3>Price:</h3> {{price}}$
+                                </div>
+                            </div>
+                        </div>
+                        <div class="description centeredX">{{description}}</div>
+                        <button type="button" onclick="buy()">Buy</button>
+                    </div>
+                </div>
+                <div class="review-form">
+                    <h2>Write a Review</h2>
+                    <form id="reviewForm">
+                        <div class="star-rating">
+                            <input type="radio" id="star10" name="rating" value="10">
+                            <label for="star10"></label>
+                            <input type="radio" id="star9" name="rating" value="9">
+                            <label for="star9"></label>
+                            <input type="radio" id="star8" name="rating" value="8">
+                            <label for="star8"></label>
+                            <input type="radio" id="star7" name="rating" value="7">
+                            <label for="star7"></label>
+                            <input type="radio" id="star6" name="rating" value="6">
+                            <label for="star6"></label>
+                            <input type="radio" id="star5" name="rating" value="5">
+                            <label for="star5"></label>
+                            <input type="radio" id="star4" name="rating" value="4">
+                            <label for="star4"></label>
+                            <input type="radio" id="star3" name="rating" value="3">
+                            <label for="star3"></label>
+                            <input type="radio" id="star2" name="rating" value="2">
+                            <label for="star2"></label>
+                            <input type="radio" id="star1" name="rating" value="1">
+                            <label for="star1"></label>
+                        </div>
+                        <textarea name="review" placeholder="Write your review here..."></textarea>
+                        <button type="button" onclick="submitReview()">Submit</button>
+                    </form>
+                </div>
+            </div>
+            <div id="reviewsContainer">
+                {{#reviews}}
+                <div class="review-item object">
+                    <p>{{user_name}}&nbsp;{{user_surname}}</p>
+                    <div>{{rating}}/10</div>
+                    <p>{{content}}</p>
+                </div>
+                {{/reviews}}
+            </div>
+        </div>
+
+        <div class="vertically ">
+            <ul class="menu_side">
+                <li><a href="/index">Home</a></li>
+                <li><a href="/profile/{{user_id}}">Profile</a></li>
+                <li><a href="/about">About&nbsp;us</a></li>
+            </ul>
+            <div class="user-widget">
+                <h3>User Information</h3>
+                <p>Username: {{username}}</p>
+                <p>Balance: {{balance}}$</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function buy() {
+            const payload = {
+                user_id: parseInt("{{user_id}}"),
+                product_id: parseInt("{{product_id}}"),
+                amount: 1,
+            };
+            submit_object(payload, "/api/buy");
+        }
+
+        function submitReview() {
+            // Get the rating value
+            var rating = document.querySelector('input[name="rating"]:checked').value;
+            var review = document.querySelector('textarea[name="review"]').value;
+            if (!rating || !review) {
+                alert('Please provide a rating and a review text.');
+                return;
+            }
+            document.getElementById('reviewForm').reset();
+
+
+            const payload = {
+                user_id: parseInt("{{user_id}}"),
+                product_id: parseInt("{{product_id}}"),
+                rating: parseInt(rating),
+                content: review,
+            };
+            submit_object(payload, "/api/review");
+        }
+    </script>
+</body>
+
+
+</html>
