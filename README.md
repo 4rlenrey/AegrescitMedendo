@@ -1,8 +1,6 @@
 # AegrescitMedendo
 
-Project overview and idea behind it.
-
-I made this proof of concept project in my second semester of college to kinda show off to my programming proffesor. I was under the impression that, he didn't think I could write a working web application based on c++. In order to show him that with modern tools it can be done, I've made this little app.
+I made this proof of concept project in my second semester of college to kinda show off to my programming proffesor. I was under the impression, that he didn't think I could write a working web application based on c++. In order to show him that with modern tools it can be done, I've made this little app.
 
 It uses crow for most web-related stuff, sqlite_orm for database management and other small libraries if needed
 
