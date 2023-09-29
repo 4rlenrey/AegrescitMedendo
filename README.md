@@ -9,9 +9,7 @@ More about the initial idea in [here](./docs/InitialIdea.pdf)
 ## Screenshots
 
 ![about_us](docs/login.png)
-![404](docs/404.png)
 ![screenshot](docs/about_us.png)
-![screenshot](docs/profile.png)
 ![shop](docs/shop.png)
 
 # Running
